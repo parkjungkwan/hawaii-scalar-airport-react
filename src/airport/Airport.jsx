@@ -13,14 +13,14 @@ export const airportReducer = (state = [], action) =>{
     }
 }
 export const airportSearch = () => dispatch => {
-    axios.get(`https://argodeep.github.io/React-Redux-Hooks-with-axios-redux-thunk/airport.json`)
+    axios.get(`https://github.com/algolia/datasets/blob/master/airports/airports.json`)
         .then(response => {
             dispatch(getAirports(response.data))
         })
         .catch(error => {throw (error)})
 }
 
-
+// eslint-disable-next-line 
 const Airport = () => {
     const [loading , setLoading] = useState(false)
     const [resultAvailable, setResult] = useState(false)
@@ -43,7 +43,7 @@ const Airport = () => {
         if(airport.city !== undefined) changeTitle()
     })
     let fetch = () => dispatch(airportSearch())
-    let fetched = () => setLoading(false)
+    //let fetched = () => setLoading(false)
     let changeTitle = () => document.title = `공항 검색 결과: ${airport.airport}`
     let searchAirports = debounce(500, input => {
         let data = results.data
